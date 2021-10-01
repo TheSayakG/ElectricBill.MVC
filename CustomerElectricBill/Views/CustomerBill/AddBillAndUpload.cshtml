@@ -1,0 +1,67 @@
+﻿@model BillingCreateModel
+<form method="post" asp-action="AddBillAndUpload" enctype="multipart/form-data">
+    <div class="border p-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <h2 class="text-black-50 pl-3">Add Bill</h2>
+        </div>
+        <div>
+            <h3>
+                @ViewBag.ErrorMsg
+            </h3>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="UserId"></label>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="readings"></label>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="Document"></label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <input asp-for="UserId" class="form-control" />
+                        <span asp-validation-for="UserId" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="readings" class="form-control" />
+                        <span asp-validation-for="readings" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <div class="custom-file">
+                            <input asp-for="Document" class="form-control custom-file-input" />
+                            <label class="custom-file-label">Choose File</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-2 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-75" value="Add" />
+                        </div>
+
+                        <div class="col">
+                            <a asp-controller="CustomerBill" asp-action="Index" asp-route-ID=@ViewBag.id class="btn btn-danger w-75">Back to Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @section Scripts{
+        <script>
+            $(document).ready(function () {
+                $('.custom-file-input').on("change", function () {
+                    var fileName = $(this).val().split("\\").pop();
+                    $(this).next('.custom-file-label').html(fileName);
+                });
+            });
+        </script>
+    }
+
+</form>

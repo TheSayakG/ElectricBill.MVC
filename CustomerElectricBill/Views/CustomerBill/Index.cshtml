@@ -1,0 +1,29 @@
+﻿@model CustomerElectricBill.Models.Billing
+
+@{
+    ViewData["Title"] = "Get Bill";
+}
+
+<h1>Home</h1>
+
+<h4>Billing</h4>
+<hr />
+<div class="row">
+    <div class="col-md-10">
+        @using (Html.BeginForm("Index", "CustomerBill", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+        {
+            <label>CustomerId</label>
+            <input type="text" name="id" />
+            <br />
+            <input type="submit" value="GO" class="btn btn-primary" />
+        }
+    </div>
+    <div class="col-md-10">
+        @using (Html.BeginForm("AddCustomers", "Customer", FormMethod.Post))
+        {
+            <br />
+            <input type="submit" value="Add New" class="btn btn-primary" />
+        }
+    </div>
+</div>
+

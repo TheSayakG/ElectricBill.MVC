@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Billing>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">All Bills</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="CustomerBill" asp-action="AddBillAndUpload" class="btn btn-primary">Add New Bill</a>
+        </div>
+        <div class="col-6 text-left">
+            <a asp-controller="CustomerBill" asp-action="Index" class="btn btn-primary">Back</a>
+        </div>
+    </div>
+    <br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        TransactionId
+                    </th>
+                    <th>
+                        UserId
+                    </th>
+                    <th>
+                        Readings
+                    </th>
+                    <th>
+                        DocumentUrl
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td width="35%">@item.txid</td>
+                    <td width="35%">@item.UserId</td>
+                    <td width="35%">@item.readings</td>
+                    <td width="35%">@item.DocumentUrl</td>
+                    <td width="30%">
+                        <div class="w-100 btn-group" role="group">
+                            <a asp-controller="CustomerBill" asp-action="Update" asp-route-ID="@item.txid" class="btn btn-primary mx-1">Update</a>
+                            <a asp-controller="CustomerBill" asp-action="Delete" asp-route-ID="@item.txid" class="btn btn-danger mx-1">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No Bill yet</p>
+    }
+
+
+</div>

@@ -1,0 +1,55 @@
+﻿@model Billing
+<form method="post" asp-action="AddBill">
+    <div class="border p-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <h2 class="text-black-50 pl-3">Add Bill</h2>
+        </div>
+        <div>
+            <h3>
+                @ViewBag.ErrorMsg
+            </h3>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="UserId"></label>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="readings"></label>
+                    </div>
+                    <div class="col-4">
+                        <label>ElectricBill</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <input asp-for="UserId" class="form-control" />
+                        <span asp-validation-for="UserId" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="readings" class="form-control" />
+                        <span asp-validation-for="readings" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="DocumentUrl" class="form-control" />
+                        <span asp-validation-for="DocumentUrl" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-2 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-75" value="Add" />
+                        </div>
+
+                        <div class="col">
+                            <a asp-controller="CustomerBill" asp-action="Index" asp-route-ID=@ViewBag.id class="btn btn-danger w-75">Back to Home</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>

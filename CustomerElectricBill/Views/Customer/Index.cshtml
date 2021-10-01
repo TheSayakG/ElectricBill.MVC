@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CustomerModel>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">All Customers</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Customer" asp-action="AddCustomers" class="btn btn-primary">Add New Customer</a>
+        </div>
+    </div>
+    <br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td width="35%">@item.UserId</td>
+                    <td width="35%">@item.Name</td>
+                    <td width="35%">@item.Address</td>
+                    <td width="35%">@item.Status</td>
+                    <td width="30%">
+                        <div class="w-100 btn-group" role="group">
+                            <a asp-controller="Customer" asp-action="Update" asp-route-ID="@item.UserId" class="btn btn-primary mx-1">Update</a>
+                            <a asp-controller="Customer" asp-action="Delete" asp-route-ID="@item.UserId" class="btn btn-danger mx-1">Delete</a>
+                            <a asp-controller="CustomerBill" asp-action="GetBill" asp-route-ID="@item.UserId" class="btn btn-danger mx-1">Bill</a>
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No customers yet</p>
+    }
+
+
+</div>
